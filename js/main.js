@@ -17,6 +17,9 @@ var fires = [];
 var level2Counter = 0;
 var timer;
 
+var step = 10;
+
+
 function eggsDropLevel2() {
     let leftRand = Math.floor(Math.random() * (80 - 30) + 30) + 1;
     // Handler for .ready() called.
@@ -102,14 +105,14 @@ function openFullscreen() {
 
 function moveChickens(left, right, time) {
     if (counter % 2 == 0) {
-        $(".ChickensContainer").animate({
+        $("#bigChick").animate({
                 left: right
             },
             time
         );
         counter++;
     } else {
-        $(".ChickensContainer").animate({
+        $("#bigChick").animate({
                 left: left
             },
             time
@@ -205,62 +208,71 @@ function chickenCrashed(chickens, fires) {
 }
 
 function bigChickenCrashed(chickens, fires) {
-    if (chickens.length === 0) {
-        $(".ChickensContainer").remove();
-        $("h1").text("0");
-    }
 
     for (let i = 0; i < fires.length; i++) {
-        let div1 = $("#" + fires[i]);
+        let div1 = $('#' + fires[i]);
         if (div1.length != 0) {
             let res;
 
             let div2;
 
-            for (let i = 0; i < row; i++) {
-                for (let j = 0; j < col; j++) {
-                    div2 = $("#chicken" + i + j);
-                    if (div2.length != 0) {
-                        res = collision(div1, div2);
-                        if (res && isCrashed === false) {
-                            isCrashed = true;
-                            let leftPos = Math.floor(div1.offset().left);
-                            let topPos = Math.floor(div1.offset().top);
-                            if (leftPos != 0 && topPos != 0) {
-                                $("#gameContainer").append(
-                                    '<svg class="meat" id="meat' +
-                                    countMeat +
-                                    '" ><image id="meatImg" href="../imgs/meat2.png"></image></svg>'
-                                );
-                                $("#meat" + countMeat).css("top", "" + topPos + "px");
-                                $("#meat" + countMeat).css("left", "" + leftPos + "px");
-                                $("#meat" + countMeat).animate({
-                                        top: "580px"
-                                    },
-                                    2000
-                                );
-                                id = "chicken" + i + j;
-                                index = jQuery.inArray(id, chickens);
 
-                                chickens.splice(index, 1);
-                                $("#chickenAudio")[0].play();
-                                $("#chickenAudio")[0].volume = 0.4;
-                                div2.parent().remove();
+            div2 = $('#bigChick');
+            if (div2.length != 0) {
 
-                                countMeat++;
-                                div1.remove();
-                                $(".fire").css("display", "block");
-                                $(".fire").css(
-                                    "transform",
-                                    "translate(" + leftPos + "% , " + topPos + "%)"
-                                );
-                            }
+
+                res = collision(div1, div2);
+
+
+                if (res) {
+                    step += 10;
+                    $('#gameContainer').append('<svg class="meat" id="meat' + countMeat + '" ><image id="meatImg" href="../imgs/meat2.png"></image></svg>');
+
+                    if (step == 30) {
+                        let leftPos = Math.floor(div1.offset().left);
+                        let topPos = Math.floor(div1.offset().top);
+                        if (leftPos != 0 && topPos != 0) {
+                            $('#gameContainer').append('<svg class="meat" id="meat' + countMeat + '" ><image id="meatImg" href="../imgs/meat2.png"></image></svg>');
+                            $('#meat' + countMeat).css('top', '' + topPos + 'px');
+                            $('#meat' + countMeat).css('left', '' + leftPos + 'px');
+                            $('#meat' + countMeat).animate({
+                                top: '580px',
+
+                            }, 2000)
+                            // id = "chicken" + i + j;
+                            // index = jQuery.inArray(id, chickens)
+
+                            // chickens.splice(index, 1);
+                            $('#chickenAudio')[0].play();
+                            $('#chickenAudio')[0].volume = 0.4;
+                            div2.parent().remove();
+
+                            countMeat++;
+                            div1.remove();
+                            $('.fire').css("display", 'block');
+                            $('.fire').css("transform", 'translate(' + leftPos + '% , ' + topPos + '%)');
                         }
+
+
+
                     }
+
                 }
+
+
+
             }
+
+
+
+
         }
+
+
     }
+
+
+
 }
 
 function eggsDrop(chickens) {

@@ -1,34 +1,33 @@
-html{
+html {
     height: 100%;
     font-size: 62.5%;
 }
-h1
-{
+
+h1 {
     color: white;
     font-size: 20px;
     margin-left: 10px;
-    animation:  textAnimation 1s ease-in-out infinite alternate ;
+    animation: textAnimation 1s ease-in-out infinite alternate;
     margin-top: 10px;
     margin-right: 5px;
-padding: 5px;
-    font-family: 'Permanent Marker', cursive; 
+    padding: 5px;
+    font-family: 'Permanent Marker', cursive;
 
 }
-body
-{
+
+body {
     height: 100%;
     overflow: hidden;
     cursor: url(http://cur.cursors-4u.net/others/oth-8/oth756.cur), auto !important;
     /* cursor: url(imgs/—Pngtree—rocket\ launch\ logo\ icon\ design_3698972.png), url(http://cur.cursors-4u.net/cursors/cur-3/cur204.png), default !important; */
 }
 
-*
-{
+* {
     padding: 0;
     margin: 0;
 }
-#gameContainer
-{
+
+#gameContainer {
 
     position: relative;
     width: 100%;
@@ -39,38 +38,41 @@ body
     background-size: cover;
     animation: animate 7s linear infinite;
 }
-@keyframes animate
-{
+
+@keyframes animate {
     from {
         background-position: 0 0;
 
     }
-    to
-    {  
+
+    to {
         background-position: 0 100%;
 
     }
 }
 
-.cursor
-{
-  opacity: 0.6;
-  width: 400px;
-  height: 400px;
-  position  : relative;
-  background: -webkit-radial-gradient(rgba(255,255,255,0.7), rgba(200,200,200,0), rgba(150,150,150,0)); /* Safari 5.1 to 6.0 */
-  background: -o-radial-gradient(rgba(255,255,255,0.6), rgba(200,200,200,0), rgba(150,150,150,0)); /* For Opera 11.6 to 12.0 */
-  background: -moz-radial-gradient(rgba(255,255,255,0.2), rgba(200,200,200,0), rgba(150,150,150,0)); /* For Firefox 3.6 to 15 */
-  background: radial-gradient(rgba(255,255,255,0.4), rgba(200,200,200,0), rgba(150,150,150,0)); /* Standard syntax */
+.cursor {
+    opacity: 0.6;
+    width: 400px;
+    height: 400px;
+    position: relative;
+    background: -webkit-radial-gradient(rgba(255, 255, 255, 0.7), rgba(200, 200, 200, 0), rgba(150, 150, 150, 0));
+    /* Safari 5.1 to 6.0 */
+    background: -o-radial-gradient(rgba(255, 255, 255, 0.6), rgba(200, 200, 200, 0), rgba(150, 150, 150, 0));
+    /* For Opera 11.6 to 12.0 */
+    background: -moz-radial-gradient(rgba(255, 255, 255, 0.2), rgba(200, 200, 200, 0), rgba(150, 150, 150, 0));
+    /* For Firefox 3.6 to 15 */
+    background: radial-gradient(rgba(255, 255, 255, 0.4), rgba(200, 200, 200, 0), rgba(150, 150, 150, 0));
+    /* Standard syntax */
 }
-image
-{
+
+image {
     width: 10rem;
     height: 10rem;
     display: inline-block;
 }
-.chicken
-{
+
+.chicken {
     width: 10rem;
     height: 10rem;
     background-image: url(imgs/BigChicken.png);
@@ -78,32 +80,32 @@ image
     background-size: cover;
     background-position: center;
 }
-.chicken2
-{
+
+.chicken2 {
     transform: translateX(8%);
 }
-.chicken3
-{
+
+.chicken3 {
     transform: translateY(30%);
 
 }
-svg
-{
+
+svg {
     z-index: 1;
     margin: 2rem;
     height: 100%;
     width: 100%;
 
 }
-#svgRocket
-{
+
+#svgRocket {
     z-index: 2;
-   
+
     position: absolute;
-    top:0
+    top: 0
 }
-.ChickensContainer
-{
+
+.ChickensContainer {
     display: flex;
     height: 100%;
     position: absolute;
@@ -112,8 +114,8 @@ svg
     z-index: 2;
 
 }
-.fire
-{
+
+.fire {
     width: 10rem;
     height: 10rem;
     background-image: url(../imgs/explosion-clipart-animated-gif-9.gif);
@@ -124,92 +126,93 @@ svg
 }
 
 
-.egg,#eggImg,.fireAsset,#fireAssetImg
-{
+.egg,
+#eggImg,
+.fireAsset,
+#fireAssetImg {
     position: absolute;
     height: 30px;
     width: 30px;
 }
-.fireAsset{
+
+.fireAsset {
     z-index: 6;
 }
-#brokenEggImg,.brokenEgg,#meatImg,.meat
-{
+
+#brokenEggImg,
+.brokenEgg,
+#meatImg,
+.meat {
     position: absolute;
     height: 50px;
     width: 50px;
 
 }
-.meat{
+
+.meat {
     animation: rotateMeat 11s linear;
 }
 
-@keyframes rotateMeat
-{
-    from
-    {
+@keyframes rotateMeat {
+    from {
         transform: rotate(0deg);
     }
-    to
-    {
-        transform: rotate(180deg);    }
+
+    to {
+        transform: rotate(180deg);
+    }
 }
 
-#rocket
-{
+#rocket {
     position: absolute;
 
 }
-.gameOver{
+
+.gameOver {
     height: 400px;
     width: 240px;
     background-image: url(../imgs/BalloonChicken.png);
     background-position: 0 0;
-    background-repeat:no-repeat;
+    background-repeat: no-repeat;
     background-size: cover;
-    animation: animate2 10s linear ;
+    animation: animate2 10s linear;
     position: absolute;
     transform: translateX(230%);
 }
 
-.gameOver2
-{
- 
+.gameOver2 {
+
     width: fit-content;
     padding: 20px;
     color: white;
     font-size: 60px;
-    animation: animate3 11s linear , textAnimation 1s ease-in-out infinite alternate ;
+    animation: animate3 11s linear, textAnimation 1s ease-in-out infinite alternate;
     position: absolute;
-    transform:translateX(140%);
+    transform: translateX(140%);
     font-family: 'Permanent Marker', cursive;
-    
-    
+
+
 }
-@keyframes animate2
-{
+
+@keyframes animate2 {
     from {
-       top:100%
-
-
+        top: 100%
     }
-    to
-    {
-       top:-300%
 
+    to {
+        top: -300%
     }
 }
 
-@keyframes animate3
-{
+@keyframes animate3 {
     from {
-       top:180%;
+        top: 180%;
 
 
     }
-    to
-    {
-       top:-300%;
+
+    to {
+        top: -300%;
 
 
     }
@@ -217,63 +220,57 @@ svg
 
 @-webkit-keyframes textAnimation {
     from {
-      text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
     }
-    
+
     to {
-      text-shadow: 0 0 20px #fff, 0 0 30px #2F4483, 0 0 40px #2F4483, 0 0 50px #2F4483, 0 0 60px #2F4483, 0 0 70px #2F4483, 0 0 80px #2F4483;
+        text-shadow: 0 0 20px #fff, 0 0 30px #2F4483, 0 0 40px #2F4483, 0 0 50px #2F4483, 0 0 60px #2F4483, 0 0 70px #2F4483, 0 0 80px #2F4483;
     }
-  }
+}
 
-  .userDataContainer
-  {
-      display: inline-block;
-      
-      transform: translate(10px,-24px);
-      position: absolute;
-      bottom: 0;
-  }
-  .heart
-  {
-      background-image: url(../imgs/heart5.png);
-      background-size: contain;
-      background-position: center;
-      background-repeat: no-repeat;
-      height: 20px;
-      margin-left: 5px;
-    animation:  textAnimation 1s ease-in-out infinite alternate ;
-          
-      width: 20px;
-  }
+.userDataContainer {
+    display: inline-block;
+
+    transform: translate(10px, -24px);
+    position: absolute;
+    bottom: 0;
+}
+
+.heart {
+    background-image: url(../imgs/heart5.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 20px;
+    margin-left: 5px;
+    animation: textAnimation 1s ease-in-out infinite alternate;
+
+    width: 20px;
+}
 
 
-  
+
 /* Level 2 Css */
-.deactivate{
+.deactivate {
     display: none;
 }
-.bigChick{
+
+#bigChick {
+
     position: absolute;
-    height: 60%;
-    width: inherit;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding-left: 30%;
-    z-index: 5;
-}
-#bigChick{
     display: block;
-    animation: animateScale 7s linear;
-    align-self: center;
+    /* animation: animateScale 7s linear; */
+    /* align-self: center; */
     background-image: url(../imgs/War.gif);
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
-    width: 100px;
-    height: 100px;
+    width: 350px;
+    height: 350px;
+    top: 0%;
+    left: 40%;
 }
+
 /* .level2{
     position: relative;
     width: 100vw;
@@ -284,25 +281,26 @@ svg
     background-size: cover;
     animation: animate 10s linear infinite;
 } */
-@keyframes animateScale
-{
+@keyframes animateScale {
     from {
         transform: scale(1);
     }
-    to
-    {
+
+    to {
         transform: scale(3);
     }
 }
-@keyframes chickDance
-{
-    0%{
+
+@keyframes chickDance {
+    0% {
         padding-left: 10%;
     }
-    50%{
+
+    50% {
         padding-left: 70%;
     }
-    100%{
+
+    100% {
         padding-left: 10%;
     }
 }
@@ -310,67 +308,115 @@ svg
 
 /*Progress Bar*/
 .progress {
-  position: relative;
-  z-index: 5;
-  background: #484848;
-  border: 10px solid #282828;
-  border-radius: 20px;
-  display: inline-block;
-  box-shadow: 0 5px 17px rgba(40, 40, 40, 0.5), 0 0 3px 1px rgba(40, 40, 40, 0.5) inset;
+    position: relative;
+    z-index: 5;
+    background: #484848;
+    border: 10px solid #282828;
+    border-radius: 20px;
+    display: inline-block;
+    box-shadow: 0 5px 17px rgba(40, 40, 40, 0.5), 0 0 3px 1px rgba(40, 40, 40, 0.5) inset;
 }
+
 .progress-text {
-  position: absolute;
-  font: bold 14px/20px Arial;
-  text-align: center;
-  top: 0;
-  left: 0;
+    position: absolute;
+    font: bold 14px/20px Arial;
+    text-align: center;
+    top: 0;
+    left: 0;
 }
 
 
 .progress .progress-text:first-child {
-  z-index: 5;
-  color: white;
+    z-index: 5;
+    color: white;
 }
 
 .progress.neon .progress-bar {
-  background-color: #bbf3f5;
+    background-color: #bbf3f5;
     box-shadow: 0 0 5px #D9DFFF inset, 0 0 10px #00b6ff, 0 0 10px #00b6ff, 0 0 10px #00b6ff;
-  -webkit-animation: pulse 2s linear infinite;
-  -moz-animation: pulse 2s linear infinite;
-  animation: pulse 2s linear infinite;
-}
-.progress-bar {
-  overflow: hidden;
-  position: relative;
-  z-index: 10;
-  border-radius: 12px;
-  width: 0;
-  -moz-transition: width .2s linear;
-  -webkit-transition: width .2s linear;
-  -o-transition: width .2s linear;
-  transition: width .2s linear;
+    -webkit-animation: pulse 2s linear infinite;
+    -moz-animation: pulse 2s linear infinite;
+    animation: pulse 2s linear infinite;
 }
 
-.progress, .progress-bar, .progress-text {
-  width: 200px;
-  max-width: 200px;
-  height: 20px;
+.progress-bar {
+    overflow: hidden;
+    position: relative;
+    z-index: 10;
+    border-radius: 12px;
+    width: 0;
+    -moz-transition: width .2s linear;
+    -webkit-transition: width .2s linear;
+    -o-transition: width .2s linear;
+    transition: width .2s linear;
 }
+
+.progress,
+.progress-bar,
+.progress-text {
+    width: 200px;
+    max-width: 200px;
+    height: 20px;
+}
+
 @-webkit-keyframes pulse {
-  50% {
-    box-shadow: 0 0 5px #D9DFFF inset, 0 0 10px #00b6ff, 0 0 10px #00b6ff, 0 0 10px #00b6ff;
-  }
-}
-@-moz-keyframes pulse {
-  50% {
-       box-shadow: 0 0 5px #D9DFFF inset, 0 0 10px #00b6ff, 0 0 10px #00b6ff, 0 0 10px #00b6ff;
-  }
-}
-@keyframes pulse {
-  to {
-       box-shadow: 0 0 5px #D9DFFF inset, 0 0 10px #00b6ff, 0 0 10px #00b6ff, 0 0 10px #00b6ff;
-  }
-    from{
-        box-shadow: 0 0 5px #D9DFFF inset, 0 0 10px #00b6ff, 0 0 10px #00b6ff, 0 0 10px #00b6ff; 
+    50% {
+        box-shadow: 0 0 5px #D9DFFF inset, 0 0 10px #00b6ff, 0 0 10px #00b6ff, 0 0 10px #00b6ff;
     }
+}
+
+@-moz-keyframes pulse {
+    50% {
+        box-shadow: 0 0 5px #D9DFFF inset, 0 0 10px #00b6ff, 0 0 10px #00b6ff, 0 0 10px #00b6ff;
+    }
+}
+
+@keyframes pulse {
+    to {
+        box-shadow: 0 0 5px #D9DFFF inset, 0 0 10px #00b6ff, 0 0 10px #00b6ff, 0 0 10px #00b6ff;
+    }
+
+    from {
+        box-shadow: 0 0 5px #D9DFFF inset, 0 0 10px #00b6ff, 0 0 10px #00b6ff, 0 0 10px #00b6ff;
+    }
+}
+
+/* moving rocket */
+.background {
+
+    height: 100vh;
+    width: 100vw;
+    background-image: url('../images/bg-2.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+
+}
+
+#rockSvg {
+    height: 400px;
+    position: absolute;
+    z-index: 5;
+    left: 47%;
+    bottom: -70%;
+}
+
+#rock {
+    height: 100%;
+    width: auto;
+}
+
+#fogSvg {
+    height: 800px;
+    position: absolute;
+    z-index: 4;
+    bottom: -80%;
+    width: 100%;
+}
+
+#fog {
+
+    width: 100%;
+    height: auto;
+    /*    object-fit: contain;*/
 }

@@ -16,9 +16,9 @@ var chickens = [];
 var fires = [];
 var level2Counter = 0;
 var timer;
-
-var step = 10;
-
+var resultScore = 0;
+var step = 0;
+var whistle;
 
 function eggsDropLevel2() {
     let leftRand = Math.floor(Math.random() * (80 - 30) + 30) + 1;
@@ -26,7 +26,6 @@ function eggsDropLevel2() {
 
     var bchickenTop = $("#bigChick").offset().top + 150;
     var bchickenLeft = $("#bigChick").offset().left + Number(leftRand);
-    console.log(bchickenLeft);
 
     $("#gameContainer").append(
         '<svg class="egg" id="egg' +
@@ -133,17 +132,19 @@ function nextLevel() {
         fires[i].pop();
     }
     countMeat = 0;
-    chickens.push("bigChicken");
+    chickens.push("bigChick");
+
     clearInterval(timer);
     $(".ChickensContainer").append(
         '<div class="bar deactivate "><div class="progress neon "data-width="0%"><div class="progress-text">0%</div><div class="progress-bar"><div class="progress-text">0%</div></div></div></div><div class="bigChick" id="bigChick"></div>'
     );
+    $('.progress-bar').css('width', step + '%');
     setInterval(function () {
         eggsDropLevel2();
     }, 1600);
 
     window.setInterval(function () {
-        moveChickens("35%", "-35%", 2500);
+        moveChickens("65%", "-5%", 2500);
         bigChickenCrashed(chickens, fires);
     }, 200);
 }
@@ -193,11 +194,7 @@ function chickenCrashed(chickens, fires) {
 
                                 countMeat++;
                                 div1.remove();
-                                $(".fire").css("display", "block");
-                                $(".fire").css(
-                                    "transform",
-                                    "translate(" + leftPos + "% , " + topPos + "%)"
-                                );
+
                             }
                         }
                     }
@@ -223,39 +220,65 @@ function bigChickenCrashed(chickens, fires) {
 
                 res = collision(div1, div2);
 
-
                 if (res) {
+
+                    let leftPos = Math.floor(div1.offset().left);
+                    let topPos = Math.floor(div1.offset().top);
                     step += 10;
-                    $('#gameContainer').append('<svg class="meat" id="meat' + countMeat + '" ><image id="meatImg" href="../imgs/meat2.png"></image></svg>');
+                    score += 20;
+                    $("h1").text(score);
+
+                    //3shan kol mra by-compare nfs l fire bl chicken
+                    while (fires.length) {
+                        fires.pop();
+                    }
+
+                    $('.progress-text').text(step + '%')
+                    $('.progress-bar').css('width', step + '%');
+
 
                     if (step == 30) {
-                        let leftPos = Math.floor(div1.offset().left);
-                        let topPos = Math.floor(div1.offset().top);
+
+
+
                         if (leftPos != 0 && topPos != 0) {
-                            $('#gameContainer').append('<svg class="meat" id="meat' + countMeat + '" ><image id="meatImg" href="../imgs/meat2.png"></image></svg>');
-                            $('#meat' + countMeat).css('top', '' + topPos + 'px');
-                            $('#meat' + countMeat).css('left', '' + leftPos + 'px');
-                            $('#meat' + countMeat).animate({
-                                top: '580px',
+                            for (let i = 0; i < 20; i++) {
 
-                            }, 2000)
-                            // id = "chicken" + i + j;
-                            // index = jQuery.inArray(id, chickens)
+                                $('#gameContainer').append('<svg class="meat" id="meat' + countMeat + '" ><image id="meatImg" href="../imgs/meat2.png"></image></svg>');
+                                $('#meat' + countMeat).css('top', '' + topPos + 'px');
+                                $('#meat' + countMeat).css('left', '' + leftPos + ((i + 1) * 20) + 'px');
+                                $('#meat' + countMeat).animate({
+                                    top: '580px',
 
-                            // chickens.splice(index, 1);
+                                }, (i + 1) * 500);
+                                countMeat++;
+                            }
+
                             $('#chickenAudio')[0].play();
                             $('#chickenAudio')[0].volume = 0.4;
                             div2.parent().remove();
 
-                            countMeat++;
-                            div1.remove();
-                            $('.fire').css("display", 'block');
-                            $('.fire').css("transform", 'translate(' + leftPos + '% , ' + topPos + '%)');
+
+
+
                         }
 
-
-
                     }
+
+
+                    $('#gameContainer').append('<svg class="meat" id="meat' + countMeat + '" ><image id="meatImg" href="../imgs/meat2.png"></image></svg>');
+                    $('#meat' + countMeat).css('top', '' + topPos + 'px');
+                    $('#meat' + countMeat).css('left', '' + leftPos + 'px');
+                    $('#meat' + countMeat).animate({
+                        top: '580px',
+
+                    }, 2000)
+                    clearInterval(whistle);
+                    $('#chickenAudio')[0].play();
+                    $('#chickenAudio')[0].volume = 0.4;
+                    div1.remove();
+                    countMeat++;
+
 
                 }
 
@@ -277,8 +300,7 @@ function bigChickenCrashed(chickens, fires) {
 
 function eggsDrop(chickens) {
     let i = Math.floor(Math.random() * (chickens.length - 0) + 0) + 1;
-    // console.log(i);
-    // console.log(chickens);
+
     if (typeof chickens[i] != "undefined") {
         var chickenTop = $("#" + chickens[i]).offset().top;
         var chickenLeft = $("#" + chickens[i]).offset().left;
@@ -330,7 +352,7 @@ setTimeout(function () {
         EggCrashed(Eggs);
         MeatCollision();
     }, 50);
-    window.setInterval(function () {
+    whistle = window.setInterval(function () {
         $("#whistle")[0].play();
     }, 2000);
     timer = window.setInterval(function () {
@@ -363,7 +385,6 @@ document.addEventListener("keydown", function (event) {
             "translate(" + rocketX + "%," + rocketY + "%) "
         );
         RocketCrashed(chickens);
-        console.log(rocketY);
     } else if (event.keyCode == 39 && rocketX < 91) {
         rocketX += 3;
 
@@ -441,13 +462,21 @@ function MeatCollision() {
                         score += 10;
                         $("h1").text(score);
 
-                        div1.css("display", "none");
+                        div1.hide();
 
                         //$('#meat'+countMeat).hide();
 
                         $("#bite")[0].play(); // checkLives();
                     }
+                } else {
+                    setTimeout(function () {
+
+
+                        div1.remove();
+                    }, 3000)
+
                 }
+
             }
         }
     }
@@ -464,6 +493,7 @@ function EggCrashed(Eggs) {
                 let eggTop = eggDiv.offset().top;
                 let eggLeft = eggDiv.offset().left;
 
+
                 $("#gameContainer").append(
                     '<svg class="brokenEgg" id="brokenEgg' +
                     i +
@@ -479,7 +509,6 @@ function EggCrashed(Eggs) {
                 if ($("#" + Eggs[i]).offset().top > 580) {
                     eggId = jQuery.inArray(Eggs[i], Eggs);
                     $("#" + Eggs[i]).remove();
-                    console.log(Eggs);
                     Eggs.splice(eggId, 1);
                 }
             }
@@ -501,8 +530,10 @@ function EggCrashed(Eggs) {
 
                 checkLives();
             }
+
         }
     }
+
 }
 
 function checkLives() {

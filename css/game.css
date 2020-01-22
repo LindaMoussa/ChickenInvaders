@@ -308,8 +308,10 @@ svg {
 
 /*Progress Bar*/
 .progress {
-    position: relative;
+    position: absolute;
     z-index: 5;
+    left: 40%;
+    top: 2%;
     background: #484848;
     border: 10px solid #282828;
     border-radius: 20px;

@@ -218,13 +218,17 @@ function bigChickenCrashed(chickens,fires)
         }
     }
 }
-function eggsDrop() {
-    let i = Math.floor(Math.random() * 3) + 1;
-    let j = Math.floor(Math.random() * 8) + 1;
-    var chickenTop = $('#chicken' + i + j).offset().top;
-    var chickenLeft = $('#chicken' + i + j).offset().left;
-    if ($('#chicken' + i + j).length != 0) {
+function eggsDrop(chickens) {
+    let i = Math.floor(Math.random() *(chickens.length-0)+0 )+1;
+    // console.log(i);
+    // console.log(chickens);
+if(typeof(chickens[i])!="undefined")
+{
 
+    var chickenTop = $('#'+chickens[i] ).offset().top;
+    var chickenLeft = $('#'+chickens[i]  ).offset().left;
+    if ($('#'+chickens[i] ).length != 0) {
+        
         $('#gameContainer').append('<svg class="egg" id="egg' + count + '" ><image data-type="egg" id="eggImg" href="../imgs/egg.png"></image></svg>');
         Eggs.push('egg' + count);
         $('#egg' + count).css('top', '' + chickenTop + 'px');
@@ -232,10 +236,11 @@ function eggsDrop() {
         $('#egg' + count).animate({
             top: '580px'
         }, 5000)
-
-
+        
+        
         count++;
     }
+}
 
 
 
@@ -244,7 +249,7 @@ function eggsDrop() {
 
 drawGame();
 window.setInterval(function () {
-    eggsDrop();
+    eggsDrop(chickens);
 }, 3000);
 window.setInterval(function () {
     EggCrashed(Eggs);
@@ -315,16 +320,19 @@ document.addEventListener('keydown', function (event) {
         fires.push('fireAsset' + countFire);
         setTimeout(function () {
             for (let i = 0; i < fires.length; i++) {
+                if(typeof(fires[i])!='undefined')
+                {
 
-                if ($('#' + fires[i]).offset().top === -560) {
-                    fireId = jQuery.inArray(fires[i], fires);
-                    fires.splice(fireId, 1);
-
+                    if ($('#' + fires[i]).offset().top <= -500) {
+                        fireId = jQuery.inArray(fires[i], fires);
+                        fires.splice(fireId, 1);
+                        
+                    }
                 }
+                
             }
-
-
-        }, 3000);
+                
+            }, 3000);
         countFire++;
 
 
@@ -410,10 +418,11 @@ function EggCrashed(Eggs) {
                 }, 2000)
 
                 $('#EggAudio')[0].play();
-                if ($('#' + Eggs[i]).offset().top > 580) {
+                if ($('#' + Eggs[i]).offset().top > 580)  {
 
                     eggId = jQuery.inArray(Eggs[i], Eggs);
                     $('#' + Eggs[i]).remove();
+                    console.log(Eggs);
                     Eggs.splice(eggId, 1);
 
                 }

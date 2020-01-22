@@ -318,21 +318,26 @@ document.addEventListener('keydown', function (event) {
 
 
         fires.push('fireAsset' + countFire);
-        setTimeout(function () {
-            for (let i = 0; i < fires.length; i++) {
-                if(typeof(fires[i])!='undefined')
-                {
-
-                    if ($('#' + fires[i]).offset().top <= -500) {
-                        fireId = jQuery.inArray(fires[i], fires);
-                        fires.splice(fireId, 1);
-                        
-                    }
-                }
-                
-            }
-                
-            }, 3000);
+//        setTimeout(function () {
+//            for (let i = 0; i < fires.length; i++) {
+//                debugger
+//                console.log(fires.length +" "+fires[i])
+//            
+//                if(typeof( fires[i])!='undefined')
+//                
+//                {     console.log($('#'+fires[i]).offset().top)
+//              
+//
+//                    if ($('#' + fires[i]).offset().top <= -500) {
+//                        fireId = jQuery.inArray(fires[i], fires);
+//                        fires.splice(fireId, 1);
+//                        
+//                    }
+//                }
+//                
+//            }
+//                
+//            }, 1000);
         countFire++;
 
 

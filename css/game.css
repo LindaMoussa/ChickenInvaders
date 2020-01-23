@@ -308,6 +308,7 @@ svg {
 
 /*Progress Bar*/
 .progress {
+    display:none;
     position: absolute;
     z-index: 5;
     left: 40%;
@@ -320,6 +321,8 @@ svg {
 }
 
 .progress-text {
+    display:none;
+
     position: absolute;
     font: bold 14px/20px Arial;
     text-align: center;
@@ -334,7 +337,9 @@ svg {
 }
 
 .progress.neon .progress-bar {
+    
     background-color: #bbf3f5;
+    display: none;
     box-shadow: 0 0 5px #D9DFFF inset, 0 0 10px #00b6ff, 0 0 10px #00b6ff, 0 0 10px #00b6ff;
     -webkit-animation: pulse 2s linear infinite;
     -moz-animation: pulse 2s linear infinite;
@@ -342,6 +347,8 @@ svg {
 }
 
 .progress-bar {
+    display:none;
+
     overflow: hidden;
     position: relative;
     z-index: 10;
@@ -401,6 +408,7 @@ svg {
     z-index: 5;
     left: 47%;
     bottom: -70%;
+    transform: translateX(-15px);
 }
 
 #rock {
@@ -413,6 +421,7 @@ svg {
     position: absolute;
     z-index: 4;
     bottom: -80%;
+    left: -1.5%;
     width: 100%;
 }
 

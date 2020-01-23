@@ -102,16 +102,17 @@ function openFullscreen() {
     }
 }
 
-function moveChickens(left, right, time) {
+function moveChickens(left, right, time,selector) {
+
     if (counter % 2 == 0) {
-        $("#bigChick").animate({
+        $(selector).animate({
                 left: right
             },
             time
         );
         counter++;
     } else {
-        $("#bigChick").animate({
+        $(selector).animate({
                 left: left
             },
             time
@@ -120,16 +121,25 @@ function moveChickens(left, right, time) {
     }
 }
 
-function nextLevel() {
+function nextLevel(fires) {
+
+    
+    $('.progress').css("display","block");
+    $('.progress-text').css("display","block");
+    $('.progress-bar').css("display","block");
+
+
+
+    
     // $('.ChickensContainer').remove();
     $(".container").remove();
     count = 0;
     for (let i = 0; i < Eggs.length; i++) {
-        Eggs[i].pop();
+        Eggs.pop();
     }
     countFire = 0;
     for (let i = 0; i < fires.length; i++) {
-        fires[i].pop();
+        fires.pop();
     }
     countMeat = 0;
     chickens.push("bigChick");
@@ -139,12 +149,12 @@ function nextLevel() {
         '<div class="bar deactivate "><div class="progress neon "data-width="0%"><div class="progress-text">0%</div><div class="progress-bar"><div class="progress-text">0%</div></div></div></div><div class="bigChick" id="bigChick"></div>'
     );
     $('.progress-bar').css('width', step + '%');
-    setInterval(function () {
+    var eggInterval=setInterval(function () {
         eggsDropLevel2();
     }, 1600);
 
-    window.setInterval(function () {
-        moveChickens("65%", "-5%", 2500);
+    var chickenInterval=window.setInterval(function () {
+        moveChickens("70%", "-70%", 2500,'bigChick');
         bigChickenCrashed(chickens, fires);
     }, 200);
 }
@@ -152,7 +162,7 @@ function nextLevel() {
 function chickenCrashed(chickens, fires) {
     isCrashed = false;
     if (chickens.length === 0) {
-        nextLevel();
+        nextLevel(fires);
     }
 
     for (let i = 0; i < fires.length; i++) {
@@ -237,7 +247,7 @@ function bigChickenCrashed(chickens, fires) {
                     $('.progress-bar').css('width', step + '%');
 
 
-                    if (step == 30) {
+                    if (step == 100) {
 
 
 
@@ -257,6 +267,8 @@ function bigChickenCrashed(chickens, fires) {
                             $('#chickenAudio')[0].play();
                             $('#chickenAudio')[0].volume = 0.4;
                             div2.parent().remove();
+                            clearInterval(eggInterval);
+                            clearInterval(chickenInterval);
 
 
 
@@ -337,26 +349,28 @@ function rocketStart() {
         3500
     );
 }
+window.setInterval(function () {
+    EggCrashed(Eggs);
+    MeatCollision();
+}, 50);
 rocketStart();
 setTimeout(function () {
     $(".background").addClass("deactivate");
     $("#gameContainer").css("background-image", "url(../imgs/background4.png)");
     document.getElementById("gameContainer").classList.toggle("deactivate");
 
-    //   drawGame();
-    drawRocket();
+      drawGame();
+    // drawRocket();
     window.setInterval(function () {
         eggsDrop(chickens);
     }, 3000);
-    window.setInterval(function () {
-        EggCrashed(Eggs);
-        MeatCollision();
-    }, 50);
+   
     whistle = window.setInterval(function () {
         $("#whistle")[0].play();
     }, 2000);
     timer = window.setInterval(function () {
-        moveChickens("10%", "-10%", 1500);
+
+        moveChickens("10%", "-10%", 1500,'.ChickensContainer');
         chickenCrashed(chickens, fires);
     }, 200);
 }, 4000);
@@ -444,6 +458,7 @@ document.addEventListener("keydown", function (event) {
 
 function MeatCollision() {
     var meats = $(".meat");
+    console.log(meats);
     for (let i = 0; i < meats.length; i++) {
         let div1 = $("#meat" + i);
 
@@ -468,14 +483,19 @@ function MeatCollision() {
 
                         $("#bite")[0].play(); // checkLives();
                     }
-                } else {
-                    setTimeout(function () {
-
-
-                        div1.remove();
-                    }, 3000)
-
+                } 
+                else 
+                {
+                    div1.hide(1000);
                 }
+                // else {
+                //     setTimeout(function () {
+
+
+                //         div1.remove();
+                //     }, 3000) 
+
+                // }
 
             }
         }

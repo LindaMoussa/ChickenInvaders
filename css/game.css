@@ -307,8 +307,12 @@ svg {
 
 
 /*Progress Bar*/
+.progressParent {
+    display: none;
+}
+
 .progress {
-    display:none;
+
     position: absolute;
     z-index: 5;
     left: 40%;
@@ -321,7 +325,7 @@ svg {
 }
 
 .progress-text {
-    display:none;
+
 
     position: absolute;
     font: bold 14px/20px Arial;
@@ -337,9 +341,9 @@ svg {
 }
 
 .progress.neon .progress-bar {
-    
+
     background-color: #bbf3f5;
-    display: none;
+
     box-shadow: 0 0 5px #D9DFFF inset, 0 0 10px #00b6ff, 0 0 10px #00b6ff, 0 0 10px #00b6ff;
     -webkit-animation: pulse 2s linear infinite;
     -moz-animation: pulse 2s linear infinite;
@@ -347,7 +351,7 @@ svg {
 }
 
 .progress-bar {
-    display:none;
+
 
     overflow: hidden;
     position: relative;
@@ -430,4 +434,27 @@ svg {
     width: 100%;
     height: auto;
     /*    object-fit: contain;*/
+}
+
+.winner,
+.fireWorks {
+    width: 50%;
+    height: auto;
+    position: absolute;
+    left: 30%;
+    z-index: 10;
+}
+
+.fireWorks {
+    z-index: 8;
+}
+
+@keyframes winnerAnim {
+    from {
+        bottom: -70%;
+    }
+
+    to {
+        bottom: 15%;
+    }
 }

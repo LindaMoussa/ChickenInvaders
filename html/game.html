@@ -18,7 +18,7 @@
         <svg id="rockSvg">
             <image href="../images/rocket.png" id="rock">
             </image>
-            
+
 
         </svg>
 
@@ -31,10 +31,12 @@
 
 
     <div id="gameContainer" class="deactivate">
-        <div class="progress neon" data-width="0%">
-            <div class="progress-text">0%</div>
-            <div class="progress-bar">
+        <div class="progressParent">
+            <div class="progress neon" data-width="0%">
                 <div class="progress-text">0%</div>
+                <div class="progress-bar">
+                    <div class="progress-text">0%</div>
+                </div>
             </div>
         </div>
         <div class="userDataContainer">
@@ -55,6 +57,12 @@
 
             </svg>
         </div>
+        <div class="winner deactivate">
+            <img src="../imgs/winner.gif">
+        </div>
+        <div class="fireWorks deactivate">
+            <img src="../imgs/fireWorks2.gif">
+        </div>
     </div>
 
 
@@ -66,6 +74,7 @@
     <div class="fire">
 
     </div>
+
 
     <audio id="startGame" autoplay>
         <source src="../sounds/salut.mp3" type="audio/ogg">
@@ -93,7 +102,18 @@
         <source src=" ../sounds/rocketLaunch.mp3" type="audio/ogg">
 
     </audio>
+    <audio id="startAudio" autoplay>
+        <source src=" ../sounds/salut.mp3" type="audio/ogg">
 
+    </audio>
+    <audio id="winnerAudio" autoplay>
+        <source src=" ../sounds/winnerAudio.mp3" type="audio/ogg">
+
+    </audio>
+    <audio id="fireWorksAudio" autoplay>
+        <source src=" ../sounds/fireWorksAudio.mp3" type="audio/ogg">
+
+    </audio>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 

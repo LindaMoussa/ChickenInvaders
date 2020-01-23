@@ -241,7 +241,7 @@ function bigChickenCrashed(chickens, fires) {
           $(".progress-text").text(step + "%");
           $(".progress-bar").css("width", step + "%");
 
-          if (step == 20) {
+          if (step == 100) {
             $(".egg").remove();
 
             $("#fireWorksAudio")[0].play();
